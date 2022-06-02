@@ -1,0 +1,109 @@
+body{
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+hr{
+    width: 700px;
+}
+
+.container{
+    width: fit-content;
+    height: fit-content;
+    display: grid;
+    grid-template-areas: 
+    'numpad board'
+    'button button';
+    align-items: center;
+    row-gap: 20px;
+    column-gap: 50px;
+    margin: auto;
+}
+
+
+/* board */
+#board{
+    grid-area: board;
+    width: 450px;
+    height: 450px;
+    display: flex;
+    flex-wrap: wrap;
+    border: 2px solid black;
+}
+
+.cell{
+    width: 48px;
+    height: 48px;
+    border: 1px solid lightgray;
+
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cell-selected{
+    background-color: lightgray;
+}
+/*TODO: legyen jobb a kijelölés, színek keresése */
+.cell-active{
+    background-color: aliceblue;
+}
+
+.horizontal-border{
+    border-bottom: 1px solid black;
+}
+
+.vertical-border{
+    border-right: 1px solid black;
+}
+
+
+/* numpad */
+#numpad{
+    grid-area: numpad;
+    width: 210px;
+    height: 280px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.num{
+    width: 56px;
+    height: 56px;
+    border: 2px solid black;
+    border-radius: 10px;
+    margin: 5px;
+
+    font-size: 40px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete{
+    width: 120px;
+    height: 56px;
+    border: 2px solid black;
+    border-radius: 10px;
+    margin: 5px;
+
+    font-size: 30px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#button{
+    grid-area: button;
+    width: 710px;
+    height: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    background-color: aqua;
+}
