@@ -47,9 +47,6 @@ hr{
     background-color: lightgray;
 }
 /*TODO: legyen jobb a kijelölés, színek keresése */
-.cell-active{
-    background-color: aliceblue;
-}
 
 .horizontal-border{
     border-bottom: 1px solid black;
@@ -97,13 +94,25 @@ hr{
     align-items: center;
 }
 
-#button{
+#buttonpad{
     grid-area: button;
     width: 710px;
     height: 100px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+}
 
-    background-color: aqua;
+.button{
+    width: 300px;
+    height: 90px;
+    border: 2px solid black;
+    border-radius: 10px;
+    margin: 10px;
+
+    font-size: 30px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

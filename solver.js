@@ -1,7 +1,7 @@
 //solves an unfinished Sudoku
 class Solver {
 
-    constructor(board, size) {
+    constructor(board, size = 9) {
 
         this.board = board;
         this.size = size;
@@ -82,9 +82,9 @@ class Solver {
     }
 }
 
+export{Solver};
 
-
-
+/*
 let solv;
 try {
     solv = new Solver([
@@ -103,7 +103,6 @@ try {
    console.error(e);
 }
 
-/*
 [0, 0, 0, 0, 0, 0, 0, 0, 0],
 [0, 0, 0, 0, 0, 0, 0, 0, 0],
 [0, 0, 0, 0, 0, 0, 0, 0, 0],

@@ -1,3 +1,4 @@
+/*import{Solver} from 'solver.js';*/
 var selectedCell = null;
 
 window.onload = function() {
@@ -34,6 +35,10 @@ function initalise() {
     del.addEventListener('click', delClick);
     del.classList.add('delete')
     document.getElementById('numpad').appendChild(del);
+
+    // buttonpad
+    document.getElementById('clear').addEventListener('click', clear);
+    document.getElementById('solve').addEventListener('click', solve);
 }
 
 function cellClick() {
@@ -45,14 +50,50 @@ function cellClick() {
 function numClick() {
     if (selectedCell !== null) {
         selectedCell.innerText = this.id;
-        selectedCell.classList.add('cell-active');
     }
 }
 
 function delClick() {
     if (selectedCell !== null) {
         selectedCell.innerText = null;
-        selectedCell.classList.remove('cell-active')
     }
 }
+
+function clear() {
+    for (let r = 0; r < 9; r++) {
+        for (let c = 0; c < 9; c++) {
+            let id = 'cell' + r.toString() + c.toString();
+            document.getElementById(id).innerText = null;
+        }
+    }
+}
+
+/*
+function solve() {
+    let solv;
+    let board = [];
+    for (let r = 0; r < 9; r++) {
+        let line = [];
+        for (let c = 0; c < 9; c++) {
+            let id = 'cell' + r.toString() + c.toString();
+            let value = document.getElementById(id).innerText;
+            line[c] = (value === null) ? 0 : parseInt(value);
+        }
+        board[r] = line;
+    }
+
+    try {
+        solv = new Solver(board);
+    } catch (error) {
+        alert.error(error);
+        return;
+    }
+
+    for (let r = 0; r < 9; r++) {
+        for (let c = 0; c < 9; c++) {
+            let id = 'cell' + r.toString() + c.toString();
+            document.getElementById(id).innerText = solv.solution[r][c];
+        }
+    }
+} */
 
