@@ -1,4 +1,4 @@
-/*import{Solver} from 'solver.js';*/
+import{Solver} from './solver.js';
 var selectedCell = null;
 
 window.onload = function() {
@@ -11,6 +11,7 @@ function initalise() {
         for (let c = 0; c < 9; c++) {
             let cell = document.createElement('div');
             cell.id = 'cell' + r.toString() + c.toString();
+            cell.innerText = null;
             cell.addEventListener('click', cellClick);
             cell.classList.add('cell');
             if (r === 2 || r === 5) {cell.classList.add('horizontal-border');}
@@ -68,7 +69,7 @@ function clear() {
     }
 }
 
-/*
+
 function solve() {
     let solv;
     let board = [];
@@ -77,7 +78,7 @@ function solve() {
         for (let c = 0; c < 9; c++) {
             let id = 'cell' + r.toString() + c.toString();
             let value = document.getElementById(id).innerText;
-            line[c] = (value === null) ? 0 : parseInt(value);
+            line[c] = (value === '') ? 0 : parseInt(value);
         }
         board[r] = line;
     }
@@ -85,15 +86,15 @@ function solve() {
     try {
         solv = new Solver(board);
     } catch (error) {
-        alert.error(error);
+        console.error(error);
         return;
     }
 
     for (let r = 0; r < 9; r++) {
         for (let c = 0; c < 9; c++) {
             let id = 'cell' + r.toString() + c.toString();
-            document.getElementById(id).innerText = solv.solution[r][c];
+            document.getElementById(id).innerText = solv.solution[r][c].toString();
         }
     }
-} */
+} 
 

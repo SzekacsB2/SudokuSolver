@@ -5,17 +5,17 @@ class Solver {
 
         this.board = board;
         this.size = size;
-        if(this.checkMistakes()) {throw new Error('Board has mistake');}
+        if (this.checkMistakes()) {throw new Error('Board has mistake');}
 
         this.solution = [[]];
         for (let i = 1; i < size; i++) {this.solution.push([])}
         
-        if(!this.solve()) {throw new Error('No solution');}
+        if (!this.solve()) {throw new Error('No solution');}
         else {
-            for(let r = 0; r < this.size; r++) {
-                for(let c = 0; c < this.size; c++) {
+            for (let r = 0; r < this.size; r++) {
+                for (let c = 0; c < this.size; c++) {
                     let n = this.board[r][c];
-                    if(n !== 0) {this.solution[r][c] = n;}
+                    if (n !== 0) {this.solution[r][c] = n;}
                 }
             }
         }
@@ -28,12 +28,12 @@ class Solver {
         //searches for first open cell
         let r, c;
         let gotCell = false;
-        for(r = 0; r < this.size && !gotCell; r++) {
-            for(c = 0; c < this.size && !gotCell; c++) {
-                if(this.board[r][c] === 0) {gotCell = true;}
+        for (r = 0; r < this.size && !gotCell; r++) {
+            for (c = 0; c < this.size && !gotCell; c++) {
+                if (this.board[r][c] === 0) {gotCell = true;}
             }
         }
-        if(!gotCell) {return true;} //returns true if there are no open cells
+        if (!gotCell) {return true;} //returns true if there are no open cells
         r--;
         c--;
 
@@ -41,7 +41,7 @@ class Solver {
         let usable = this.getUsable(r, c);
         for (const n of usable) {
             this.board[r][c] = n;
-            if(this.solve()) {
+            if (this.solve()) {
                 this.solution[r][c] = n;
                 return true;
             }
@@ -56,21 +56,31 @@ class Solver {
     getUsable(x, y) {
 
         let usable = [];
-        for(let n = 1; n < this.size + 1; n++) {
+        let startr = Math.floor(x / 3)*3;
+        let startc = Math.floor(y / 3)*3;
+        let endr = startr + 3;
+        let endc = startc + 3;
+
+        for (let n = 1; n < this.size + 1; n++) {
             let isUsable = true;
 
             //check x, y axis
-            for(let r = 0; r < this.size && isUsable; r++) {
-                if(this.board[r][y] === n) {isUsable = false;}
-            }
-            for(let c = 0; c < this.size && isUsable; c++) {
-                if(this.board[x][c] === n) {isUsable = false;}
+            for (let i = 0; i < this.size; i++) {
+                if (this.board[i][y] === n || this.board[x][i] === n) {
+                    isUsable = false;
+                    break;
+                }
             }
 
-            //check block
-            //TODO: annyira nem akarom
+            if (this.size === 9 && isUsable) {
+                for (let r = startr; r < endr; r++) {
+                    for (let c = startc; c < endc; c++) {
+                        if (this.board[r][c] === n) {isUsable = false;}
+                    }
+                }
+            }
 
-            if(isUsable) {usable.push(n);}
+            if (isUsable) {usable.push(n);}
         }
         return usable;
     }
@@ -83,28 +93,4 @@ class Solver {
 }
 
 export{Solver};
-
-/*
-let solv;
-try {
-    solv = new Solver([
-        [6, 3, 5, 0, 8, 0, 1, 0, 0],
-        [0, 0, 0, 5, 3, 0, 0, 4, 0],
-        [0, 0, 7, 0, 0, 1, 3, 0, 0],
-        [5, 0, 0, 0, 9, 2, 0, 1, 0],
-        [9, 0, 2, 0, 0, 0, 0, 0, 4],
-        [1, 8, 0, 0, 0, 0, 0, 0, 2],
-        [4, 0, 0, 0, 2, 0, 0, 7, 0],
-        [7, 0, 0, 0, 0, 5, 0, 0, 8],
-        [3, 0, 8, 0, 0, 0, 0, 9, 0]
-    ], 9);
-    
-} catch (e) {
-   console.error(e);
-}
-
-[0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0],
-*/
 
