@@ -21,7 +21,6 @@ class Solver {
         }
     }
 
-
     //recursive backtarcking method
     solve() {
 
@@ -71,7 +70,8 @@ class Solver {
                     break;
                 }
             }
-
+            
+            // check block
             if (this.size === 9 && isUsable) {
                 for (let r = startr; r < endr; r++) {
                     for (let c = startc; c < endc; c++) {
