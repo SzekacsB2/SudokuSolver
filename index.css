@@ -67,7 +67,6 @@ h3{
 .cell-selected{
     background-color: lightgray;
 }
-/*TODO: legyen jobb a kijelölés, színek keresése */
 
 .horizontal-border{
     border-bottom: 1px solid black;
