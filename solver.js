@@ -93,7 +93,7 @@ class Solver {
                if (cell === 0) {continue;}
                this.board[r][c] = 0;
                let usable = this.getUsable(r, c);
-               this.board[r][c] = 0;
+               this.board[r][c] = cell;
                if (!usable.includes(cell)) {return true;}
            }
        }
