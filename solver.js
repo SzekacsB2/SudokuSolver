@@ -87,8 +87,17 @@ class Solver {
 
     //searches the board for errors
     checkMistakes() {
-        return false;
-        //TODO: ehez kell a getUsable
+       for (let r = 0; r < this.size; r++) {
+           for (let c = 0; c < this.size; c++) {
+               let cell = this.board[r][c];
+               if (cell === 0) {continue;}
+               this.board[r][c] = 0;
+               let usable = this.getUsable(r, c);
+               this.board[r][c] = 0;
+               if (!usable.includes(cell)) {return true;}
+           }
+       }
+       return false;
     }
 }
 

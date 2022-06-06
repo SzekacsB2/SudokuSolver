@@ -5,6 +5,51 @@ window.onload = function() {
    initalise();
 }
 
+document.onkeyup = function(e) {
+    if (e.code.includes('Digit')) {
+        let n = e.code[5];
+        if (n === '0') {return;}
+        selectedCell.style.color = 'black';
+        selectedCell.innerText = n;
+        return;
+    }
+    if (e.code.includes('Arrow')) {
+        let r = selectedCell.id[4];
+        let c = selectedCell.id[5];
+        switch (e.code) {
+            case 'ArrowDown':
+                r++;
+                if (r > 8) {r = 0;}
+                break;
+            case 'ArrowUp':
+                r--;
+                if (r < 0) {r = 8;}
+                break;
+            case 'ArrowLeft':
+                c--;
+                if (c < 0) {c = 8;}
+                break;
+            case 'ArrowRight':
+                c++;
+                if (c > 8) {c = 0;}
+                break;
+            default:
+                return;
+        }
+        let id = 'cell' + r.toString() + c.toString();
+
+        selectedCell.classList.remove('cell-selected');
+        selectedCell = document.getElementById(id);
+        selectedCell.classList.add('cell-selected');
+        return;
+    }
+    if (e.code === 'Backspace') {
+        selectedCell.innerText = null;
+    }
+}
+
+
+
 function initalise() {
     // board 
     for (let r = 0; r < 9; r++) {
@@ -19,6 +64,9 @@ function initalise() {
             document.getElementById('board').appendChild(cell);
         }
     }
+
+    selectedCell = document.getElementById('cell00');
+    selectedCell.classList.add('cell-selected');
 
     // numpad
     for (let i = 1; i < 10; i++) {
@@ -40,24 +88,23 @@ function initalise() {
     // buttonpad
     document.getElementById('clear').addEventListener('click', clear);
     document.getElementById('solve').addEventListener('click', solve);
+
+    document.getElementById('help').addEventListener('click', hide);
 }
 
 function cellClick() {
-    if (selectedCell !== null) {selectedCell.classList.remove('cell-selected');}
+    selectedCell.classList.remove('cell-selected');
     selectedCell = this;
     selectedCell.classList.add('cell-selected');
 }
 
 function numClick() {
-    if (selectedCell !== null) {
-        selectedCell.innerText = this.id;
-    }
+    selectedCell.style.color = 'black';
+    selectedCell.innerText = this.id;
 }
 
 function delClick() {
-    if (selectedCell !== null) {
-        selectedCell.innerText = null;
-    }
+    selectedCell.innerText = null;
 }
 
 function clear() {
@@ -66,6 +113,16 @@ function clear() {
             let id = 'cell' + r.toString() + c.toString();
             document.getElementById(id).innerText = null;
         }
+    }
+}
+
+function hide() {
+    let descr = document.getElementById('descr')
+    if (descr.style.display === 'none') {
+        descr.style.display = 'flex';
+        document.body.scrollIntoView(false);
+    } else {
+        descr.style.display = 'none';
     }
 }
 
@@ -87,13 +144,18 @@ function solve() {
         solv = new Solver(board);
     } catch (error) {
         console.error(error);
+        alert('ERROR:  board has a mistake');
         return;
     }
 
     for (let r = 0; r < 9; r++) {
         for (let c = 0; c < 9; c++) {
             let id = 'cell' + r.toString() + c.toString();
-            document.getElementById(id).innerText = solv.solution[r][c].toString();
+            let cell = document.getElementById(id);
+            if (cell.innerText === '') {
+                cell.style.color = '#5e80e6';
+                cell.innerText = solv.solution[r][c].toString();
+            }
         }
     }
 } 

@@ -1,10 +1,31 @@
 body{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    user-select: none;
+}
+
+h1{
     text-align: center;
-    font-family: 'Courier New', Courier, monospace;
+    font-weight: 600;
+    margin-bottom: 5px;
 }
 
 hr{
     width: 700px;
+    border-top: 2px solid royalblue;
+}
+
+h3{
+    width: 28px;
+    height: 28px;
+    border: 1px solid black;
+    border-radius: 25px;
+    font-size: 25px;
+    text-align: center;
+    color: royalblue;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    margin-left: 90px;
+    cursor: pointer;
 }
 
 .container{
@@ -34,10 +55,10 @@ hr{
 .cell{
     width: 48px;
     height: 48px;
-    border: 1px solid lightgray;
+    border: 1px dotted gray;
 
     font-size: 20px;
-    font-weight: bold;
+    font-weight: 400;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -74,10 +95,16 @@ hr{
     margin: 5px;
 
     font-size: 40px;
-    font-weight: bold;
+    font-weight: 500;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.num:hover{
+    border: 2px solid royalblue;
+    color: royalblue;
+    cursor: pointer;
 }
 
 .delete{
@@ -87,11 +114,17 @@ hr{
     border-radius: 10px;
     margin: 5px;
 
-    font-size: 30px;
-    font-weight: bold;
+    font-size: 35px;
+    font-weight: 500;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.delete:hover{
+    border: 2px solid royalblue;
+    color: royalblue;
+    cursor: pointer;
 }
 
 #buttonpad{
@@ -103,16 +136,50 @@ hr{
     justify-content: center;
 }
 
-.button{
-    width: 300px;
-    height: 90px;
+.clear{
+    width: 190px;
+    height: 70px;
     border: 2px solid black;
+    border-radius: 10px;
+    margin: 10px;
+    margin-right: 20px;
+
+    font-size: 30px;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.clear:hover{
+    border: 2px solid royalblue;
+    color: royalblue;
+    cursor: pointer;
+}
+
+.solve{
+    width: 230px;
+    height: 70px;
+    border: 2px solid orangered;
     border-radius: 10px;
     margin: 10px;
 
     font-size: 30px;
-    font-weight: bold;
+    font-weight: 500;
+    color: orangered;
     display: flex;
     justify-content: center;
+    align-items: center;
+}
+
+.solve:hover{
+    border: 2px solid orangered;
+    background-color: orangered;
+    color: white;
+    cursor: pointer;
+}
+
+#descr{
+    display: none;
     align-items: center;
 }
