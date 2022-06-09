@@ -90,6 +90,7 @@ function initalise() {
     document.getElementById('solve').addEventListener('click', solve);
 
     document.getElementById('help').addEventListener('click', hide);
+    document.getElementById('descr').style.display = 'none';
 }
 
 function cellClick() {
@@ -118,11 +119,11 @@ function clear() {
 
 function hide() {
     let descr = document.getElementById('descr')
-    if (descr.style.display === 'none') {
+    if (descr.style.display !== 'none') {
+        descr.style.display = 'none';
+    } else {
         descr.style.display = 'flex';
         document.body.scrollIntoView(false);
-    } else {
-        descr.style.display = 'none';
     }
 }
 
